@@ -43,6 +43,8 @@ func VerifyPassword(userPassword string, givenPassword string) (bool, string) {
 	return valid, msg
 }
 
+// localhost:8000/users/signup
+//
 //	{
 //	    "first_name": "alpha",
 //	    "last_name": "beta",
@@ -116,6 +118,8 @@ func SignUp() gin.HandlerFunc {
 	}
 }
 
+// localhost:8000/users/login
+//
 //	{
 //	    "email":"alpha@beta.com",
 //	    "password":"alpha@123"
@@ -152,11 +156,13 @@ func Login() gin.HandlerFunc {
 
 		generate.UpdateAllTokens(token, refreshToken, foundUser.User_ID)
 
-		c.JSON(http.StatusFound, foundUser)
+		c.JSON(http.StatusFound, fmt.Sprintf("token: %s", token))
 	}
 
 }
 
+// localhost:8000/admin/addproduct
+//
 //	{
 //	    "product_name": "laptop",
 //	    "price": 200,

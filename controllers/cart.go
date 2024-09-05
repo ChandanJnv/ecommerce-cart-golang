@@ -27,6 +27,7 @@ func NewApplication(prodCollection, userCollection *mongo.Collection) *Applicati
 	}
 }
 
+// localhost:8000/addtocart?id={product_id}&userID={user_id}
 func (app *Application) AddToCart() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		productQueryID := c.Query("id")
@@ -141,6 +142,7 @@ func (app *Application) GetItemFromCart() gin.HandlerFunc {
 	}
 }
 
+// localhost:8000/cartcheckout?userID={user_id}
 func (app *Application) BuyFromCart() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		userQueryID := c.Query("userID")
@@ -161,6 +163,7 @@ func (app *Application) BuyFromCart() gin.HandlerFunc {
 	}
 }
 
+// localhost:8000/instantbuy?id={product_id}&userID={user_id}
 func (app *Application) InstantBuy() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		productQueryID := c.Query("id")
